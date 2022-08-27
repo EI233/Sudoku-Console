@@ -13,20 +13,20 @@ void Solution(SATList* List)
 	else
 	{
 		value = (int*)malloc(sizeof(int) * (boolCount + 1));
-		for (int i = 1; i <= boolCount; i++) value[i] = 1;  //初始化，均赋为1
+		for (int i = 0; i <= boolCount; i++) value[i] = 1;  //初始化，均赋为1
 		start = clock();  //计时开始;
-		result = DPLL1(List, value);
+		result = DPLL(List, value);
 		finish = clock();//
 		t1 = (double)(finish - start) / CLOCKS_PER_SEC;//计算运行时间
-		for (int i = 1; i <= boolCount; i++) value[i] = 1;
+		for (int i = 0; i <= boolCount; i++) value[i] = 1;
 		List = NULL;
 		LoadFile(&List, FileName);
 		start = clock();  //计时开始;
-		result = DPLL(List, value);
+		result = DPLL1(List, value);
 		finish = clock();//结束
 		t2 = (double)(finish - start) / CLOCKS_PER_SEC;//计算运行时间
-		printf("运行时间:未优化:%lfms\n"
-			   "运行时间:优化:%lfms\n", t1 * 1000, t2 * 1000);//输出运行时间
+		printf("运行时间:优化:%lfms\n"
+			   "运行时间:未优化:%lfms\n", t1 * 1000, t2 * 1000);//输出运行时间
 		if (result == 1)
 		{
 			printf("Mission Completed!\nWhether to show the result?(1 means Yes | 2 means NO)");
@@ -46,7 +46,7 @@ void Solution(SATList* List)
 		scanf("%d", &op);
 		if (op == 1)
 		{
-			if (WriteFile(result, t2, value) == 1)
+			if (WriteFile(result, t1, value) == 1)
 				printf("The result has already been stored to the res file with a same name\n");
 			else printf("Failed!\n");
 		}

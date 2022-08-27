@@ -207,7 +207,7 @@ int Max(SATList* List)
 {
 	int i, MaxWord = 0, max = 0; //count记录每个文字出现次数,MaxWord记录出现最多次数的文字
 	count = (Count*)malloc(sizeof(Count) * (boolCount + 1));
-	for (int j = 1; j <= boolCount; ++j)
+	for (int j = 0; j <= boolCount; ++j)
 	{
 		count[j].Negative = 0;
 		count[j].Positive = 0;
@@ -220,7 +220,7 @@ int Max(SATList* List)
 			else count[-dp->data].Negative++;
 		}
 	}
-	for (i = 1; i <= boolCount; i++)
+	for (i = 0; i <= boolCount; i++)
 	{
 		if (max < count[i].Positive + count[i].Negative)
 		{
@@ -228,7 +228,7 @@ int Max(SATList* List)
 			MaxWord = i;
 		}
 	}
-	if (count[MaxWord].Positive <= count[MaxWord].Negative)MaxWord = -MaxWord;
+	if (count[MaxWord].Positive < count[MaxWord].Negative)MaxWord = -MaxWord;
 	free(count);
 	count = NULL;
 	return MaxWord;
@@ -238,7 +238,7 @@ int SudoKU_Max(SATList* List)
 {
 	int i, MaxWord = 0, max = 0; //count记录每个文字出现次数,MaxWord记录出现最多次数的文字
 	count = (Count*)malloc(sizeof(Count) * (3001));
-	for (int j = 1; j <= 3000; ++j)
+	for (int j = 1111; j <= 3000; ++j)
 	{
 		count[j].Negative = 0;
 		count[j].Positive = 0;
