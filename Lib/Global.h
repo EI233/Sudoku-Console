@@ -16,6 +16,7 @@ typedef struct Count
 {
 	int Negative;
 	int Positive;
+	int num;
 } Count;
 typedef struct SATNode
 {
