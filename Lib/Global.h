@@ -16,7 +16,6 @@ typedef struct Count
 {
 	int Negative;
 	int Positive;
-	int num;
 } Count;
 typedef struct SATNode
 {
@@ -40,7 +39,7 @@ extern char FileName[150];
 extern int sudoku[ROW][COL];
 extern int starting_grid[ROW][COL];
 extern int holes;
-extern Count* count;
+//extern Count* count;
 
 extern Value SudoResult[163];
 
@@ -77,9 +76,9 @@ int emptyClause(SATList* cnf);
 
 SATList* CopyClause(SATList* List);
 
-int Max(SATList* List);
+int Max(SATList* List,Count *count,const int num[]);
 
-int DPLL(SATList* cnf, int value[]);
+int DPLL(SATList* cnf, int value[], Count* count, const int num[]);
 
 int DPLL1(SATList* cnf, int value[]);
 
@@ -98,7 +97,7 @@ void print(const int a[][COL]);
 void ToCnf(int a[][COL], int hole);
 
 
-int SudoDPLL(SATList* cnf, Value value[],int T);
+int SudoDPLL(SATList* cnf, Value value[], int T);
 
 int SudoKU_Max(SATList* List);
 

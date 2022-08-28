@@ -9,10 +9,10 @@
 #define nullptr NULL
 
 /*
- * å‡½æ•°åç§°: destroyClause
- * æ¥å—å‚æ•°: SATList*
- * å‡½æ•°åŠŸèƒ½: é”€æ¯æ‰€æœ‰å­å¥
- * è¿”å›å€¼: æ— 
+ * º¯ÊıÃû³Æ: destroyClause
+ * ½ÓÊÜ²ÎÊı: SATList*
+ * º¯Êı¹¦ÄÜ: Ïú»ÙËùÓĞ×Ó¾ä
+ * ·µ»ØÖµ: ÎŞ
  */
 void destroyClause(SATLIST* cnf)
 {
@@ -32,27 +32,28 @@ void destroyClause(SATLIST* cnf)
 }
 
 /*
- * å‡½æ•°åç§°: isUnitClause
- * æ¥å—å‚æ•°: SATNode*
- * å‡½æ•°åŠŸèƒ½: åˆ¤æ–­æ˜¯å¦ä¸ºå•å­å¥ï¼Œæ˜¯è¿”å›1ï¼Œä¸æ˜¯è¿”å›0
- * è¿”å›å€¼: int
+ * º¯ÊıÃû³Æ: isUnitClause
+ * ½ÓÊÜ²ÎÊı: SATNode*
+ * º¯Êı¹¦ÄÜ: ÅĞ¶ÏÊÇ·ñÎªµ¥×Ó¾ä£¬ÊÇ·µ»Ø1£¬²»ÊÇ·µ»Ø0
+ * ·µ»ØÖµ: int
  */
 SATList* isUnitClause(SATList* List)
 {
-	while (List != NULL)
+	SATList* temp = List;
+	while (temp != NULL)
 	{
-		if (List->head != NULL && List->head->next == NULL)
-			return List;
-		List = List->next;
+		if (temp->head != NULL && temp->head->next == NULL)
+			return temp;
+		temp = temp->next;
 	}
 	return NULL;
 }
 
 /*
- * å‡½æ•°åç§°: RemoveSATNode
- * æ¥å—å‚æ•°: SATList*,SATList*
- * å‡½æ•°åŠŸèƒ½: åœ¨å·²æœ‰çš„åå­—é“¾è¡¨ä¸­å¯¹æŒ‡å®šæ•°æ®è¿›è¡Œç®€åŒ–å¥å­çš„ç®€åŒ–
- * è¿”å›å€¼: æ— 
+ * º¯ÊıÃû³Æ: RemoveSATNode
+ * ½ÓÊÜ²ÎÊı: SATList*,SATList*
+ * º¯Êı¹¦ÄÜ: ÔÚÒÑÓĞµÄÊ®×ÖÁ´±íÖĞ¶ÔÖ¸¶¨Êı¾İ½øĞĞ¼ò»¯¾ä×ÓµÄ¼ò»¯
+ * ·µ»ØÖµ: ÎŞ
  */
 void RemoveSATNode(int re, SATLIST* List)
 {
@@ -62,7 +63,7 @@ void RemoveSATNode(int re, SATLIST* List)
 		{
 			if (dp->data == re)
 			{
-				removeClause(lp, List);  //åˆ é™¤å­å¥ï¼Œç®€åŒ–å¼å­
+				removeClause(lp, List);  //É¾³ı×Ó¾ä£¬¼ò»¯Ê½×Ó
 				break;
 			}
 			else if (dp->data == -re)
@@ -76,10 +77,10 @@ void RemoveSATNode(int re, SATLIST* List)
 }
 
 /*
- * å‡½æ•°åç§°: removeClause
- * æ¥å—å‚æ•°: SATList*,SATList*
- * å‡½æ•°åŠŸèƒ½: åœ¨å·²æœ‰çš„åå­—é“¾è¡¨ä¸­åˆ é™¤æŒ‡å®šçš„å­å¥ï¼Œåˆ é™¤æˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
- * è¿”å›å€¼: int
+ * º¯ÊıÃû³Æ: removeClause
+ * ½ÓÊÜ²ÎÊı: SATList*,SATList*
+ * º¯Êı¹¦ÄÜ: ÔÚÒÑÓĞµÄÊ®×ÖÁ´±íÖĞÉ¾³ıÖ¸¶¨µÄ×Ó¾ä£¬É¾³ı³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
+ * ·µ»ØÖµ: int
  */
 void removeClause(SATList* Clause, SATLIST* root)
 {
@@ -99,10 +100,10 @@ void removeClause(SATList* Clause, SATLIST* root)
 }
 
 /*
- * å‡½æ•°åç§°: removeNode
- * æ¥å—å‚æ•°: SATNode*,SATNode*
- * å‡½æ•°åŠŸèƒ½: åœ¨æŒ‡å®šçš„å­å¥ä¸­åˆ é™¤æŒ‡å®šçš„æ–‡å­—ï¼Œåˆ é™¤æˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
- * è¿”å›å€¼: int
+ * º¯ÊıÃû³Æ: removeNode
+ * ½ÓÊÜ²ÎÊı: SATNode*,SATNode*
+ * º¯Êı¹¦ÄÜ: ÔÚÖ¸¶¨µÄ×Ó¾äÖĞÉ¾³ıÖ¸¶¨µÄÎÄ×Ö£¬É¾³ı³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
+ * ·µ»ØÖµ: int
  */
 int removeNode(SATNode* cnf, SATNODE* head)
 {
@@ -117,10 +118,10 @@ int removeNode(SATNode* cnf, SATNODE* head)
 }
 
 /*
- * å‡½æ•°åç§°: addClause
- * æ¥å—å‚æ•°: SATList*,SATList*
- * å‡½æ•°åŠŸèƒ½: åœ¨å·²æœ‰çš„åå­—é“¾è¡¨ä¸­æ·»åŠ æŒ‡å®šçš„å­å¥ï¼Œæ·»åŠ æˆåŠŸè¿”å›1ï¼Œå¤±è´¥è¿”å›0
- * è¿”å›å€¼: int
+ * º¯ÊıÃû³Æ: addClause
+ * ½ÓÊÜ²ÎÊı: SATList*,SATList*
+ * º¯Êı¹¦ÄÜ: ÔÚÒÑÓĞµÄÊ®×ÖÁ´±íÖĞÌí¼ÓÖ¸¶¨µÄ×Ó¾ä£¬Ìí¼Ó³É¹¦·µ»Ø1£¬Ê§°Ü·µ»Ø0
+ * ·µ»ØÖµ: int
  */
 SATList* addClause(SATList* cnf, int var)
 {
@@ -136,10 +137,10 @@ SATList* addClause(SATList* cnf, int var)
 }
 
 /*
- * å‡½æ•°åç§°: emptyClause
- * æ¥å—å‚æ•°: SATList*
- * å‡½æ•°åŠŸèƒ½: åˆ¤æ–­æ˜¯å¦å«æœ‰ç©ºå­å¥ï¼Œæ˜¯è¿”å›1ï¼Œä¸æ˜¯è¿”å›0
- * è¿”å›å€¼: int
+ * º¯ÊıÃû³Æ: emptyClause
+ * ½ÓÊÜ²ÎÊı: SATList*
+ * º¯Êı¹¦ÄÜ: ÅĞ¶ÏÊÇ·ñº¬ÓĞ¿Õ×Ó¾ä£¬ÊÇ·µ»Ø1£¬²»ÊÇ·µ»Ø0
+ * ·µ»ØÖµ: int
  */
 int emptyClause(SATList* List)
 {
@@ -154,10 +155,10 @@ int emptyClause(SATList* List)
 }
 
 /*
- * å‡½æ•°åç§°: CopyClause
- * æ¥å—å‚æ•°: SATList*,SATList*
- * å‡½æ•°åŠŸèƒ½: å°†é“¾è¡¨bçš„å€¼å¤åˆ¶åˆ°é“¾è¡¨aä¸­
- * è¿”å›å€¼: void
+ * º¯ÊıÃû³Æ: CopyClause
+ * ½ÓÊÜ²ÎÊı: SATList*,SATList*
+ * º¯Êı¹¦ÄÜ: ½«Á´±íbµÄÖµ¸´ÖÆµ½Á´±íaÖĞ
+ * ·µ»ØÖµ: void
  */
 SATList* CopyClause(SATList* List)
 {
@@ -165,11 +166,11 @@ SATList* CopyClause(SATList* List)
 	SATList* ReHead = (SATList*)malloc(sizeof(SATList));
 	SATList* Phead = ReHead;
 	SATNode* ReData = (SATNode*)malloc(sizeof(SATNode)), * FirstSrcData = SrcHead->head;
-	ReData->data = FirstSrcData->data;//æ–°é“¾è¡¨çš„ç¬¬ä¸€ä¸ªæ•°æ®èŠ‚ç‚¹çš„æ•°å€¼
+	ReData->data = FirstSrcData->data;//ĞÂÁ´±íµÄµÚÒ»¸öÊı¾İ½ÚµãµÄÊıÖµ
 	Phead->head = ReData;
 	Phead->length = SrcHead->length;
 	for (FirstSrcData = FirstSrcData->next; FirstSrcData != NULL; FirstSrcData = FirstSrcData->next)
-	{//ç¬¬ä¸€è¡Œé“¾è¡¨å¤åˆ¶å®Œæˆ
+	{//µÚÒ»ĞĞÁ´±í¸´ÖÆÍê³É
 		SATNode* NewDataNode = (SATNode*)malloc(sizeof(SATNode));
 		NewDataNode->data = FirstSrcData->data;
 		NewDataNode->next = NULL;
@@ -185,9 +186,9 @@ SATList* CopyClause(SATList* List)
 		Phead = Phead->next;
 		SATNode* SrcData = SrcHead->head;
 		NewData->data = SrcData->data;
-		Phead->head = NewData;//ç¬¬ä¸€ä¸ªæ•°æ®èŠ‚ç‚¹
+		Phead->head = NewData;//µÚÒ»¸öÊı¾İ½Úµã
 		for (SrcData = SrcData->next; SrcData != NULL; SrcData = SrcData->next)
-		{//æ­¤è¡Œå‰©ä¸‹çš„æ•°æ®èŠ‚ç‚¹
+		{//´ËĞĞÊ£ÏÂµÄÊı¾İ½Úµã
 			SATNode* node = (SATNode*)malloc(sizeof(SATNode));
 			node->data = SrcData->data;
 			NewData->next = node;
@@ -200,46 +201,103 @@ SATList* CopyClause(SATList* List)
 }
 
 /*
- * å‡½æ•°åç§°: Max
- * æ¥å—å‚æ•°: SATList*
- * å‡½æ•°åŠŸèƒ½: æ±‚å–å‡ºç°æœ€å¤šæ¬¡æ•°çš„æ–‡å­—
- * è¿”å›å€¼: int
+ * º¯ÊıÃû³Æ: Max
+ * ½ÓÊÜ²ÎÊı: SATList*
+ * º¯Êı¹¦ÄÜ: ÇóÈ¡³öÏÖ×î¶à´ÎÊıµÄÎÄ×Ö
+ * ·µ»ØÖµ: int
  */
-int Max(SATList* List)
+int Max(SATList* List, Count* count, const int num[])
 {
-	int i, MaxWord = 0, max = 0; //countè®°å½•æ¯ä¸ªæ–‡å­—å‡ºç°æ¬¡æ•°,MaxWordè®°å½•å‡ºç°æœ€å¤šæ¬¡æ•°çš„æ–‡å­—
-	count = (Count*)malloc(sizeof(Count) * (boolCount + 1));
-	for (int j = 1; j <= boolCount; ++j)
-	{
-		count[j].Negative = 0;
-		count[j].Positive = 0;
-	}
+
+	int flag = 1, max, MaxWord;
+	SATList* L, * T;
 	for (SATList* lp = List; lp != NULL; lp = lp->next)
 	{
-		for (SATNode* dp = lp->head; dp != NULL; dp = dp->next)
+		if (lp->length == 2 && flag)
 		{
-			if (dp->data > 0) count[dp->data].Positive++;
-			else count[-dp->data].Negative++;
+			flag = 0;
+			SATList* ReHead = (SATList*)malloc(sizeof(SATList));
+			ReHead->length = 2;
+			L = T = ReHead;
+			T->next = NULL;
+			SATNode* ReData = (SATNode*)malloc(sizeof(SATNode));
+			SATNode* temp;
+			ReHead->head = ReData;
+			ReData->data = lp->head->data;
+			ReData->next = NULL;
+			temp = ReData;
+			for (SATNode* dp = lp->head->next; dp != NULL; dp = dp->next)
+			{
+				ReData = (SATNode*)malloc(sizeof(SATNode));
+				temp->next = ReData;
+				ReData->data = dp->data;
+				ReData->next = NULL;
+				temp = ReData;
+			}
 		}
+		else if (lp->length == 2 && !flag)
+		{
+			SATList* ReHead = (SATList*)malloc(sizeof(SATList));
+			ReHead->length = 2;
+			T->next = ReHead;
+			SATNode* ReData = (SATNode*)malloc(sizeof(SATNode));
+			SATNode* temp;
+			ReHead->head = ReData;
+			ReData->data = lp->head->data;
+			ReData->next = NULL;
+			temp = ReData;
+			for (SATNode* dp = lp->head->next; dp != NULL; dp = dp->next)
+			{
+				ReData = (SATNode*)malloc(sizeof(SATNode));
+				temp->next = ReData;
+				ReData->data = dp->data;
+				ReData->next = NULL;
+				temp = ReData;
+			}
+			T = ReHead;
+			T->next = NULL;
+		}
+
 	}
-	for (i = 1; i <= boolCount; i++)
+	if (!flag)
 	{
-		if (max < count[i].Positive + count[i].Negative)
+		for (SATList* lp = L; lp != NULL; lp = lp->next)
 		{
-			max = count[i].Positive + count[i].Negative;
-			MaxWord = i;
+			for (SATNode* dp = lp->head; dp != NULL; dp = dp->next)
+			{
+				int n = dp->data > 0 ? dp->data : -dp->data;
+				if (num[n])
+				{
+					if (max < count[n].Positive + count[n].Negative)
+					{
+						max = count[n].Positive + count[n].Negative;
+						MaxWord = n;
+					}
+				}
+			}
 		}
 	}
+	else
+		for (int i = 1; i <= boolCount; i++)
+		{
+			if (num[i])
+			{
+				if (max < count[i].Positive + count[i].Negative)
+				{
+					max = count[i].Positive + count[i].Negative;
+					MaxWord = i;
+				}
+			}
+		}
+	if (!flag)destroyClause(&L);
 	if (count[MaxWord].Positive <= count[MaxWord].Negative)MaxWord = -MaxWord;
-	free(count);
-	count = NULL;
 	return MaxWord;
 }
 
 int SudoKU_Max(SATList* List)
 {
-	int i, MaxWord = 0, max = 0; //countè®°å½•æ¯ä¸ªæ–‡å­—å‡ºç°æ¬¡æ•°,MaxWordè®°å½•å‡ºç°æœ€å¤šæ¬¡æ•°çš„æ–‡å­—
-	count = (Count*)malloc(sizeof(Count) * (3001));
+	int i, MaxWord = 0, max = 0;
+	Count* count = (Count*)malloc(sizeof(Count) * (3001));
 	for (int j = 1111; j <= 3000; ++j)
 	{
 		count[j].Negative = 0;
@@ -268,13 +326,15 @@ int SudoKU_Max(SATList* List)
 }
 
 /*
-* å‡½æ•°åç§°: DPLL
-* æ¥å—å‚æ•°: SATList *
-* å‡½æ•°åŠŸèƒ½: é€‰æ‹©å‡ºç°æœ€å¤šæ¬¡æ•°çš„æ–‡å­—ä¸ºç­–ç•¥çš„DPLL
-* è¿”å›å€¼: int
+* º¯ÊıÃû³Æ: DPLL
+* ½ÓÊÜ²ÎÊı: SATList *
+* º¯Êı¹¦ÄÜ: Ñ¡Ôñ³öÏÖ×î¶à´ÎÊıµÄÎÄ×ÖÎª²ßÂÔµÄDPLL
+* ·µ»ØÖµ: int
 */
-int DPLL(SATList* cnf, int value[])
+int DPLL(SATList* cnf, int value[], Count* count, const int num[])
 {
+	int* numT = (int*)malloc(sizeof(int) * boolCount + 1);
+	for (int i = 1; i <= boolCount; ++i)numT[i] = num[i];
 	SATList* List = cnf;
 	SATList* UnitClause = isUnitClause(List);
 	while (UnitClause != NULL)
@@ -282,6 +342,9 @@ int DPLL(SATList* cnf, int value[])
 		if (UnitClause->head->data > 0) value[UnitClause->head->data] = 1;
 		else value[-UnitClause->head->data] = 0;
 		int re = UnitClause->head->data;
+		if (re > 0)
+			numT[re] = 0;
+		else numT[-re] = 0;
 		removeClause(UnitClause, &cnf);
 		RemoveSATNode(re, &cnf);
 		if (!cnf)return 1;
@@ -293,18 +356,18 @@ int DPLL(SATList* cnf, int value[])
 		List = cnf;
 		UnitClause = isUnitClause(List);
 	}
-	int Var = Max(cnf);
+	int Var = Max(cnf, count, numT);
 	SATList* replica = CopyClause(cnf);
 	SATList* temp1 = CopyClause(cnf);
 	SATList* temp2 = addClause(replica, -Var);
 	temp1 = addClause(temp1, Var);
-	if (DPLL(temp1, value))
+	if (DPLL(temp1, value, count, numT))
 	{
 		destroyClause(&temp1);
 		temp1 = NULL;
 		return 1;
-	}  //åœ¨ç¬¬ä¸€åˆ†æ”¯ä¸­æœç´¢
-	else if (DPLL1(temp2, value))
+	}  //ÔÚµÚÒ»·ÖÖ§ÖĞËÑË÷
+	else if (DPLL(temp2, value, count, numT))
 	{
 		destroyClause(&temp2);
 		temp2 = NULL;
@@ -314,10 +377,10 @@ int DPLL(SATList* cnf, int value[])
 }
 
 /*
-* å‡½æ•°åç§°: DPLL1
-* æ¥å—å‚æ•°: SATList *
-* å‡½æ•°åŠŸèƒ½: åŸºç¡€ç‰ˆDPLL
-* è¿”å›å€¼: int
+* º¯ÊıÃû³Æ: DPLL1
+* ½ÓÊÜ²ÎÊı: SATList *
+* º¯Êı¹¦ÄÜ: »ù´¡°æDPLL
+* ·µ»ØÖµ: int
 */
 int DPLL1(SATList* cnf, int value[])
 {
@@ -350,7 +413,7 @@ int DPLL1(SATList* cnf, int value[])
 		destroyClause(&temp1);
 		temp1 = NULL;
 		return 1;
-	}  //åœ¨ç¬¬ä¸€åˆ†æ”¯ä¸­æœç´¢
+	}  //ÔÚµÚÒ»·ÖÖ§ÖĞËÑË÷
 	else if (DPLL1(temp2, value))
 	{
 		destroyClause(&temp2);

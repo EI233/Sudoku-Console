@@ -3,19 +3,42 @@
 //
 #include "Global.h"
 
+void New_Max(SATList* List, Count* count)
+{
+
+	for (int j = 1; j <= boolCount; ++j)
+	{
+		count[j].Negative = 0;
+		count[j].Positive = 0;
+	}
+	for (SATList* lp = List; lp != NULL; lp = lp->next)
+	{
+		for (SATNode* dp = lp->head; dp != NULL; dp = dp->next)
+		{
+			if (dp->data > 0) count[dp->data].Positive++;
+			else count[-dp->data].Negative++;
+		}
+	}
+}
 
 void Solution(SATList* List)
 {
 	clock_t start, finish;
 	double t1, t2;
-	int* value, result, op;
+	int* value, result, op, num[boolCount + 1];
+	Count MaxCount[boolCount + 1];
 	if (List == NULL) printf("未成功导入文件\n");
 	else
 	{
 		value = (int*)malloc(sizeof(int) * (boolCount + 1));
-		for (int i = 0; i <= boolCount; i++) value[i] = 1;  //初始化，均赋为1
+		for (int i = 0; i <= boolCount; i++)
+		{
+			value[i] = 1;
+			num[i] = 1;
+		}
+		New_Max(List, MaxCount);
 		start = clock();  //计时开始;
-		result = DPLL(List, value);
+		result = DPLL(List, value, MaxCount, num);
 		finish = clock();//
 		t1 = (double)(finish - start) / CLOCKS_PER_SEC;//计算运行时间
 		for (int i = 0; i <= boolCount; i++) value[i] = 1;
